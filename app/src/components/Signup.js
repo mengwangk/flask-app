@@ -55,6 +55,11 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center'
   },
+  stepContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
   stepGrid: {
     width: '80%'
   },
@@ -176,7 +181,7 @@ class Signup extends Component {
                 <div className={classes.logo}>
                   <img width={100} height={100} src={logo} alt="" />
                 </div>
-                <div>
+                <div className={classes.stepContainer}>
                   <div className={classes.stepGrid}>
                     <Stepper classes={{root: classes.stepper}} activeStep={activeStep} alternativeLabel>
                       {steps.map(label => {

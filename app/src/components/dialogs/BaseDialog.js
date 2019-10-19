@@ -16,7 +16,12 @@ const styles = theme => ({
   },
   bottomMargin: {
     marginBottom: theme.spacing(2)
-  }
+  },
+  stepsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
 });
 
 class BaseDialog extends Component {
