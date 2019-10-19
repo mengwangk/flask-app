@@ -45,11 +45,6 @@ const styles = theme => ({
   bigContainer: {
     width: '80%'
   },
-  stepContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
   stepGrid: {
     width: '80%'
   },
@@ -181,7 +176,7 @@ class Wizard extends Component {
             <Grid spacing={24} alignItems="center" justify="center" container className={classes.grid}>
               <Grid item xs={12}>
                 <Back />
-                <div className={classes.stepContainer}>
+                <div>
                   <div className={classes.bigContainer}>
                     <Stepper classes={{root: classes.stepper}} activeStep={activeStep} alternativeLabel>
                       {steps.map(label => {

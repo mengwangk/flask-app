@@ -9,22 +9,35 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { Link as MaterialLink } from '@material-ui/core'
-import Menu from './Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+
+import AppMenu from './AppMenu';
 
 const logo = require('../images/logo.svg');
 
 const styles = theme => ({
+  grow: {
+    flexGrow: 1,
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+
   appBar: {
     position: 'relative',
     boxShadow: 'none',
     borderBottom: `1px solid ${theme.palette.grey['100']}`,
     backgroundColor: 'white',
-
   },
   inline: {
     display: 'inline'
@@ -83,7 +96,8 @@ class Topbar extends Component {
 
   state = {
     value: 0,
-    menuDrawer: false
+    menuDrawer: false,
+    menuProfile: false
   };
 
   handleChange = (event, value) => {
@@ -98,18 +112,26 @@ class Topbar extends Component {
     this.setState({ menuDrawer: false });
   }
 
+  profileMenuOpen = (event) => {
+    this.setState({ menuProfile: true });
+  }
+
+  profileMenuClose = (event) => {
+    this.setState({ menuProfile: false });
+  }
+
   componentDidMount() {
     window.scrollTo(0, 0);
   }
 
   current = () => {
-    if(this.props.currentPath === '/home') {
+    if(this.props.currentPath === '/') {
       return 0
     }
-    if(this.props.currentPath === '/dashboard') {
+    if(this.props.currentPath === '/admin') {
       return 1
     }
-    if(this.props.currentPath === '/signup') {
+    if(this.props.currentPath === '/template') {
       return 2
     }
     if(this.props.currentPath === '/wizard') {
@@ -118,17 +140,30 @@ class Topbar extends Component {
     if(this.props.currentPath === '/cards') {
       return 4
     }
-
   }
 
+  menuId = 'primary-search-account-menu';
+
+  renderMenu = (
+    <Menu
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={this.menuId}
+      keepMounted
+      open={this.menuProfile}
+      onClose={this.profileMenuClose}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+    >
+      <MenuItem onClick={this.profileMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={this.profileMenuClose}>My account</MenuItem>
+    </Menu>
+  );
+
   render() {
-
     const { classes } = this.props;
-
     return (
       <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
-            <Grid container spacing={24} alignItems="baseline">
+            <Grid container spacing={10} alignItems="baseline">
               <Grid item xs={12} className={classes.flex}>
                   <div className={classes.inline}>
                     <Typography variant="h6" color="inherit" noWrap>
@@ -154,7 +189,7 @@ class Topbar extends Component {
                         <SwipeableDrawer anchor="right" open={this.state.menuDrawer} onClose={this.mobileMenuClose} onOpen={this.mobileMenuOpen}>
                           <AppBar title="Menu" />
                           <List>
-                            {Menu.map((item, index) => (
+                            {AppMenu.map((item, index) => (
                               <ListItem component={item.external ? MaterialLink : Link} href={item.external ? item.pathname : null} to={item.external ? null : {pathname: item.pathname, search: this.props.location.search}} button key={item.label}>
                                 <ListItemText primary={item.label} />
                               </ListItem>
@@ -167,15 +202,29 @@ class Topbar extends Component {
                           textColor="primary"
                           onChange={this.handleChange}
                         >
-                          {Menu.map((item, index) => (
+                          {AppMenu.map((item, index) => (
                             <Tab key={index} component={item.external ? MaterialLink : Link} href={item.external ? item.pathname : null} to={item.external ? null : {pathname: item.pathname, search: this.props.location.search}} classes={{root: classes.tabItem}} label={item.label} />
                           ))}
                         </Tabs>
                       </div>
                     </React.Fragment>
                   )}
+                  
               </Grid>
             </Grid>
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+              <IconButton
+                edge="end"
+                aria-label="user profile"
+                aria-controls={this.menuId}
+                aria-haspopup="true"
+                color="inherit"
+                onClick={this.profileMenuOpen}
+                >
+                <AccountCircle />
+              </IconButton>
+            </div>
         </Toolbar>
       </AppBar>
     )
