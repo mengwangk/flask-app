@@ -8,6 +8,10 @@ const TopMenu = [
     pathname: "/admin"
   },
   {
+    label: "Sample Form",
+    pathname: "/sampleform"
+  },
+  {
     label: "Template Page",
     pathname: "/template"
   }

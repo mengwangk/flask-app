@@ -32,7 +32,6 @@ const styles = theme => ({
       display: 'flex',
     },
   },
-
   appBar: {
     position: 'relative',
     boxShadow: 'none',
@@ -133,10 +132,10 @@ class Topbar extends Component {
     if(this.props.currentPath === '/admin') {
       return 1
     }
-    if(this.props.currentPath === '/template') {
+    if(this.props.currentPath === '/sampleform') {
       return 2
     }
-    if(this.props.currentPath === '/wizard') {
+    if(this.props.currentPath === '/template') {
       return 3
     }
     if(this.props.currentPath === '/cards') {
@@ -144,22 +143,7 @@ class Topbar extends Component {
     }
   }
 
-  menuId = 'primary-search-account-menu';
-
-  renderMenu = (
-    <Menu
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      anchorEl={this.state.anchorEl}
-      id={this.menuId}
-      keepMounted
-      open={this.state.menuProfile}
-      onClose={this.profileMenuClose}
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-    >
-      <MenuItem onClick={this.profileMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={this.profileMenuClose}>My account</MenuItem>
-    </Menu>
-  );
+  menuId = 'account-menu';
 
   render() {
     const { classes } = this.props;
@@ -232,7 +216,20 @@ class Topbar extends Component {
                 <AccountCircle />
               </IconButton>
             </div>
-            {this.renderMenu}
+            
+            <Menu
+              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+              anchorEl={anchorEl}
+              id={this.menuId}
+              keepMounted
+              open={this.state.menuProfile}
+              onClose={this.profileMenuClose}
+              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            >
+              <MenuItem onClick={this.profileMenuClose}>Profile</MenuItem>
+              <MenuItem onClick={this.profileMenuClose}>My account</MenuItem>
+          </Menu>
+
         </Toolbar>
       </AppBar>
     )

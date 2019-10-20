@@ -56,11 +56,11 @@ const styles = theme => ({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
-  outlinedButtom: {
+  outlinedButton: {
     textTransform: 'uppercase',
     margin: theme.spacing(1)
   },
-  actionButtom: {
+  actionButton: {
     textTransform: 'uppercase',
     margin: theme.spacing(1),
     width: 152,
@@ -186,7 +186,7 @@ class Dashboard extends Component {
                     </Typography>
                   </div>
                   <div>
-                    <Button variant="outlined" className={classes.outlinedButtom}>
+                    <Button variant="outlined" className={classes.outlinedButton}>
                       Get help
                     </Button>
                   </div>
@@ -357,10 +357,10 @@ class Dashboard extends Component {
                       </Typography>
                     </div>
                     <div className={classes.buttonBar}>
-                      <Button to={{ pathname: "/dashboard", search: `?type=save` }} component={Link} variant="outlined" className={classes.actionButtom}>
+                      <Button to={{ pathname: "/dashboard", search: `?type=save` }} component={Link} variant="outlined" className={classes.actionButton}>
                         Save
                       </Button>
-                      <Button to={{ pathname: "/dashboard", search: `?type=apply` }} component={Link} color='primary' variant="contained" className={classes.actionButtom}>
+                      <Button to={{ pathname: "/dashboard", search: `?type=apply` }} component={Link} color='primary' variant="contained" className={classes.actionButton}>
                         Apply
                       </Button>
                     </div>

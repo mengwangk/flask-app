@@ -56,7 +56,7 @@ const styles = theme => ({
   backButton: {
     marginRight: theme.spacing(1),
   },
-  outlinedButtom: {
+  outlinedButton: {
     textTransform: 'uppercase',
     margin: theme.spacing(1)
   },
@@ -206,7 +206,7 @@ class Wizard extends Component {
                           </Typography>
                         </div>
                         <div>
-                        <Button variant="outlined" size="large" className={classes.outlinedButtom}>
+                        <Button variant="outlined" size="large" className={classes.outlinedButton}>
                           Edit
                         </Button>
                         </div>
@@ -293,7 +293,7 @@ class Wizard extends Component {
                           </Typography>
                         </div>
                         <div>
-                          <Button variant="outlined" size="large" className={classes.outlinedButtom}>
+                          <Button variant="outlined" size="large" className={classes.outlinedButton}>
                             Edit
                           </Button>
                         </div>

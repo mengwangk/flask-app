@@ -46,11 +46,11 @@ const styles = theme => ({
     alignItems: 'center',
     marginTop: 32
   },
-  outlinedButtom: {
+  outlinedButton: {
     textTransform: 'uppercase',
     margin: theme.spacing(1)
   },
-  actionButtom: {
+  actionButton: {
     textTransform: 'uppercase',
     margin: theme.spacing(1),
     width: 152
@@ -135,7 +135,7 @@ class Main extends Component {
                     </Typography>
                   </div>
                   <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    <Button color='primary' variant="contained" className={classes.actionButtom}>
+                    <Button color='primary' variant="contained" className={classes.actionButton}>
                       Learn more
                     </Button>
                   </div>
@@ -152,7 +152,7 @@ class Main extends Component {
                     </Typography>
                   </div>
                   <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    <Button color='primary' variant="contained" className={classes.actionButtom}>
+                    <Button color='primary' variant="contained" className={classes.actionButton}>
                       Learn more
                     </Button>
                   </div>
@@ -169,10 +169,10 @@ class Main extends Component {
                     </Typography>
                   </div>
                   <div className={classes.alignRight}>
-                    <Button onClick={this.openDialog}  variant="outlined" className={classes.actionButtom}>
+                    <Button onClick={this.openDialog}  variant="outlined" className={classes.actionButton}>
                       Learn more
                     </Button>
-                    <Button onClick={this.openGetStartedDialog} color='primary' variant="contained" className={classes.actionButtom}>
+                    <Button onClick={this.openGetStartedDialog} color='primary' variant="contained" className={classes.actionButton}>
                       Dashboard
                     </Button>
                   </div>
@@ -191,7 +191,7 @@ class Main extends Component {
                           </Typography>
                         </div>
                         <div className={classes.alignRight}>
-                          <Button color='primary' variant="contained" className={classes.actionButtom}>
+                          <Button color='primary' variant="contained" className={classes.actionButton}>
                             Learn more
                           </Button>
                         </div>

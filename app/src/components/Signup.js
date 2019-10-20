@@ -74,7 +74,7 @@ const styles = theme => ({
   backButton: {
     marginRight: theme.spacing(1),
   },
-  outlinedButtom: {
+  outlinedButton: {
     textTransform: 'uppercase',
     margin: theme.spacing(1)
   },

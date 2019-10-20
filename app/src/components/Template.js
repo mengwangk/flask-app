@@ -8,9 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Topbar from './Topbar';
 
-const numeral = require('numeral');
-numeral.defaultFormat('0,000');
-
 const backgroundShape = require('../images/shape.svg');
 
 const styles = theme => ({
@@ -54,7 +51,7 @@ const styles = theme => ({
     textTransform: 'uppercase',
     margin: theme.spacing(1)
   },
-  actionButtom: {
+  actionButton: {
     textTransform: 'uppercase',
     margin: theme.spacing(1),
     width: 152
@@ -139,7 +136,7 @@ class Template extends Component {
                     display: 'flex',
                     justifyContent: 'flex-end'
                   }}>
-                    <Button color='primary' variant="contained" className={classes.actionButtom}>
+                    <Button color='primary' variant="contained" className={classes.actionButton}>
                       Learn more
                     </Button>
                   </div>
