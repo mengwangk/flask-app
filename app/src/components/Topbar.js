@@ -18,7 +18,7 @@ import { Link as MaterialLink } from '@material-ui/core'
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-import AppMenu from './AppMenu';
+import TopMenu from './TopMenu';
 
 const logo = require('../images/logo.svg');
 
@@ -149,7 +149,7 @@ class Topbar extends Component {
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={this.menuId}
       keepMounted
-      open={this.menuProfile}
+      open={this.state.menuProfile}
       onClose={this.profileMenuClose}
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
     >
@@ -175,11 +175,13 @@ class Topbar extends Component {
                   </div>
                   { !this.props.noTabs && (
                     <React.Fragment>
+                      {/*
                       <div className={classes.productLogo}>
                         <Typography>
                           A sample web app
                         </Typography>
                       </div>
+                      */}
                       <div className={classes.iconContainer}>
                         <IconButton onClick={this.mobileMenuOpen} className={classes.iconButton} color="inherit" aria-label="Menu">
                           <MenuIcon />
@@ -189,7 +191,7 @@ class Topbar extends Component {
                         <SwipeableDrawer anchor="right" open={this.state.menuDrawer} onClose={this.mobileMenuClose} onOpen={this.mobileMenuOpen}>
                           <AppBar title="Menu" />
                           <List>
-                            {AppMenu.map((item, index) => (
+                            {TopMenu.map((item, index) => (
                               <ListItem component={item.external ? MaterialLink : Link} href={item.external ? item.pathname : null} to={item.external ? null : {pathname: item.pathname, search: this.props.location.search}} button key={item.label}>
                                 <ListItemText primary={item.label} />
                               </ListItem>
@@ -202,7 +204,7 @@ class Topbar extends Component {
                           textColor="primary"
                           onChange={this.handleChange}
                         >
-                          {AppMenu.map((item, index) => (
+                          {TopMenu.map((item, index) => (
                             <Tab key={index} component={item.external ? MaterialLink : Link} href={item.external ? item.pathname : null} to={item.external ? null : {pathname: item.pathname, search: this.props.location.search}} classes={{root: classes.tabItem}} label={item.label} />
                           ))}
                         </Tabs>

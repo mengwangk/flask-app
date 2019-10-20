@@ -1,4 +1,4 @@
-const AppMenu = [
+const TopMenu = [
   {
     label: "Home",
     pathname: "/"
@@ -13,4 +13,4 @@ const AppMenu = [
   }
 ];
 
-export default AppMenu;
+export default TopMenu;
