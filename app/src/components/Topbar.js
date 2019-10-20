@@ -97,7 +97,8 @@ class Topbar extends Component {
   state = {
     value: 0,
     menuDrawer: false,
-    menuProfile: false
+    menuProfile: false,
+    anchorEl: null
   };
 
   handleChange = (event, value) => {
@@ -113,11 +114,12 @@ class Topbar extends Component {
   }
 
   profileMenuOpen = (event) => {
-    this.setState({ menuProfile: true });
+    this.setState({ menuProfile: true,  anchorEl: event.currentTarget });
+    console.log(this.state.menuProfile);
   }
 
   profileMenuClose = (event) => {
-    this.setState({ menuProfile: false });
+    this.setState({ menuProfile: false,  anchorEl: null});
   }
 
   componentDidMount() {
@@ -147,6 +149,7 @@ class Topbar extends Component {
   renderMenu = (
     <Menu
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorEl={this.state.anchorEl}
       id={this.menuId}
       keepMounted
       open={this.state.menuProfile}
@@ -160,6 +163,8 @@ class Topbar extends Component {
 
   render() {
     const { classes } = this.props;
+    const { anchorEl } = this.state;
+    
     return (
       <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
@@ -227,6 +232,7 @@ class Topbar extends Component {
                 <AccountCircle />
               </IconButton>
             </div>
+            {this.renderMenu}
         </Toolbar>
       </AppBar>
     )
