@@ -1,43 +1,45 @@
-import React,  { Component } from 'react';
-import withStyles from '@material-ui/styles/withStyles';
-import { Link, withRouter } from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Toolbar from '@material-ui/core/Toolbar';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import MenuIcon from '@material-ui/icons/Menu';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import React, { Component } from 'react'
+import withStyles from '@material-ui/styles/withStyles'
+import { Link, withRouter } from 'react-router-dom'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Toolbar from '@material-ui/core/Toolbar'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import MenuIcon from '@material-ui/icons/Menu'
+import IconButton from '@material-ui/core/IconButton'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import { Link as MaterialLink } from '@material-ui/core'
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem'
+import Menu from '@material-ui/core/Menu'
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
+import ExitToApp from '@material-ui/icons/ExitToApp'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import { withTranslation } from 'react-i18next'
 
-import TopMenu from './TopMenu';
-
-const logo = require('../images/logo.svg');
+import TopMenu from './TopMenu'
+import { Images } from '../themes'
 
 const styles = theme => ({
   grow: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
+      display: 'flex'
+    }
   },
-
   appBar: {
     position: 'relative',
     boxShadow: 'none',
     borderBottom: `1px solid ${theme.palette.grey['100']}`,
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   inline: {
     display: 'inline'
@@ -56,7 +58,7 @@ const styles = theme => ({
   },
   productLogo: {
     display: 'inline-block',
-    borderLeft: `1px solid ${theme.palette.grey['A100']}`,
+    borderLeft: `1px solid ${theme.palette.grey.A100}`,
     marginLeft: 32,
     paddingLeft: 24,
     [theme.breakpoints.up('md')]: {
@@ -89,154 +91,252 @@ const styles = theme => ({
     paddingTop: 20,
     paddingBottom: 20,
     minWidth: 'auto'
+  },
+  dropDownMenu: {
+    flexDirection: 'row-reverse'
   }
 })
 
-class Topbar extends Component {
+const StyledMenu = withStyles({
+  paper: {
+    border: '1px solid #d3d4d5'
+  }
+})(props => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center'
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center'
+    }}
+    {...props}
+  />
+))
 
+const StyledMenuItem = withStyles(theme => ({
+
+}))(MenuItem)
+
+class Topbar extends Component {
   state = {
     value: 0,
     menuDrawer: false,
-    menuProfile: false,
-    anchorEl: null
+    anchorElProfile: null,
+    anchorElDropdown: null
   };
 
   handleChange = (event, value) => {
-    this.setState({ value });
+    this.setState({ value })
   };
 
-  mobileMenuOpen = (event) => {
-    this.setState({ menuDrawer: true });
+  handleMobileMenuOpen = (event) => {
+    this.setState({ menuDrawer: true })
   }
 
-  mobileMenuClose = (event) => {
-    this.setState({ menuDrawer: false });
+  handleMobileMenuClose = (event) => {
+    this.setState({ menuDrawer: false })
   }
 
-  profileMenuOpen = (event) => {
-    this.setState({ menuProfile: true,  anchorEl: event.currentTarget });
-    console.log(this.state.menuProfile);
+  handleProfileMenuOpen = (event) => {
+    this.setState({ anchorElProfile: event.currentTarget })
   }
 
-  profileMenuClose = (event) => {
-    this.setState({ menuProfile: false,  anchorEl: null});
+  handleProfileMenuClose = (event) => {
+    this.setState({ anchorElProfile: null })
   }
 
-  componentDidMount() {
-    window.scrollTo(0, 0);
+  handleDropdownMenuOpen = (event) => {
+    this.setState({ anchorElDropdown: event.currentTarget })
+  }
+
+  handleDropdownMenuClose = (event) => {
+    this.setState({ anchorElDropdown: null })
+  }
+
+  componentDidMount () {
+    window.scrollTo(0, 0)
   }
 
   current = () => {
-    if(this.props.currentPath === '/') {
+    if (this.props.currentPath === '/') {
       return 0
     }
-    if(this.props.currentPath === '/admin') {
+    if (this.props.currentPath === '/admin') {
       return 1
     }
-    if(this.props.currentPath === '/template') {
+    if (this.props.currentPath === '/sampleform') {
       return 2
     }
-    if(this.props.currentPath === '/wizard') {
+    if (this.props.currentPath === '/templatepage') {
       return 3
     }
-    if(this.props.currentPath === '/cards') {
+    if (this.props.currentPath === '/sampletable') {
       return 4
+    }
+    if (this.props.currentPath === '/samplegrid1') {
+      return 5
+    }
+    if (this.props.currentPath === '/samplegrid2') {
+      return 6
+    }
+    if (this.props.currentPath === '/sampleupload') {
+      return 7
     }
   }
 
-  menuId = 'primary-search-account-menu';
+  profileMenuId = 'account-menu';
+  dropdownMenuId = 'dropdown-menu'
 
-  renderMenu = (
-    <Menu
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      anchorEl={this.state.anchorEl}
-      id={this.menuId}
-      keepMounted
-      open={this.state.menuProfile}
-      onClose={this.profileMenuClose}
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-    >
-      <MenuItem onClick={this.profileMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={this.profileMenuClose}>My account</MenuItem>
-    </Menu>
-  );
+  render () {
+    const { classes, t } = this.props
+    const { anchorElProfile, anchorElDropdown, menuDrawer } = this.state
 
-  render() {
-    const { classes } = this.props;
-    const { anchorEl } = this.state;
-    
     return (
-      <AppBar position="absolute" color="default" className={classes.appBar}>
+      <AppBar position='absolute' color='default' className={classes.appBar}>
         <Toolbar>
-            <Grid container spacing={10} alignItems="baseline">
-              <Grid item xs={12} className={classes.flex}>
-                  <div className={classes.inline}>
-                    <Typography variant="h6" color="inherit" noWrap>
-                      <Link to='/' className={classes.link}>
-                        <img width={20} src={logo} alt="" />
-                        <span className={classes.tagline}>Flask React App</span>
-                      </Link>
-                    </Typography>
-                  </div>
-                  { !this.props.noTabs && (
-                    <React.Fragment>
-                      {/*
+          <Grid container spacing={10} alignItems='baseline'>
+            <Grid item xs={12} className={classes.flex}>
+              <div className={classes.inline}>
+                <Typography variant='h6' color='inherit' noWrap>
+                  <Link to='/' className={classes.link}>
+                    <img width={20} src={Images.logo} alt='' />
+                    <span className={classes.tagline}>{t('title')}</span>
+                  </Link>
+                </Typography>
+              </div>
+              {!this.props.noTabs && (
+                <>
+                  {/*
                       <div className={classes.productLogo}>
                         <Typography>
                           A sample web app
                         </Typography>
                       </div>
-                      */}
-                      <div className={classes.iconContainer}>
-                        <IconButton onClick={this.mobileMenuOpen} className={classes.iconButton} color="inherit" aria-label="Menu">
-                          <MenuIcon />
-                        </IconButton>
-                      </div>
-                      <div className={classes.tabContainer}>
-                        <SwipeableDrawer anchor="right" open={this.state.menuDrawer} onClose={this.mobileMenuClose} onOpen={this.mobileMenuOpen}>
-                          <AppBar title="Menu" />
-                          <List>
-                            {TopMenu.map((item, index) => (
-                              <ListItem component={item.external ? MaterialLink : Link} href={item.external ? item.pathname : null} to={item.external ? null : {pathname: item.pathname, search: this.props.location.search}} button key={item.label}>
-                                <ListItemText primary={item.label} />
-                              </ListItem>
-                            ))}
-                          </List>
-                        </SwipeableDrawer>
-                        <Tabs
-                          value={this.current() || this.state.value}
-                          indicatorColor="primary"
-                          textColor="primary"
-                          onChange={this.handleChange}
-                        >
-                          {TopMenu.map((item, index) => (
-                            <Tab key={index} component={item.external ? MaterialLink : Link} href={item.external ? item.pathname : null} to={item.external ? null : {pathname: item.pathname, search: this.props.location.search}} classes={{root: classes.tabItem}} label={item.label} />
-                          ))}
-                        </Tabs>
-                      </div>
-                    </React.Fragment>
-                  )}
-                  
-              </Grid>
+                  */}
+                  <div className={classes.iconContainer}>
+                    <IconButton onClick={this.handleMobileMenuOpen} className={classes.iconButton} color='inherit' aria-label='Menu'>
+                      <MenuIcon />
+                    </IconButton>
+                  </div>
+                  <div className={classes.tabContainer}>
+                    <SwipeableDrawer anchor='right' open={menuDrawer} onClose={this.handleMobileMenuClose} onOpen={this.handleMobileMenuOpen}>
+                      <AppBar title='Menu' />
+                      <List>
+                        {TopMenu.map((item, index) => (
+                          <ListItem component={item.external ? MaterialLink : Link} href={item.external ? item.pathname : null} to={item.external ? null : { pathname: item.pathname, search: this.props.location.search }} button key={item.label}>
+                            <ListItemText primary={item.label} />
+                          </ListItem>
+                        ))}
+                      </List>
+                    </SwipeableDrawer>
+                    <Tabs
+                      value={this.current() || this.state.value}
+                      indicatorColor='primary'
+                      textColor='primary'
+                      onChange={this.handleChange}
+                    >
+                      {TopMenu.map((item, index) => (
+                        <Tab key={index} component={item.external ? MaterialLink : Link} href={item.external ? item.pathname : null} to={item.external ? null : { pathname: item.pathname, search: this.props.location.search }} classes={{ root: classes.tabItem }} label={item.label} />
+                      ))}
+
+                      <Tab
+                        classes={{ wrapper: classes.dropDownMenu }}
+                        aria-label='dropdown'
+                        aria-controls={this.dropdownMenuId}
+                        aria-haspopup='true'
+                        value='More'
+                        label={<><ArrowDropDownIcon />Click Me</>}
+                        onClick={this.handleDropdownMenuOpen}
+                        // icon={<ArrowDropDownIcon onClick={this.handleDropdownMenuOpen} />}
+                      />
+                    </Tabs>
+                  </div>
+                </>
+              )}
+
             </Grid>
-            <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
-              <IconButton
-                edge="end"
-                aria-label="user profile"
-                aria-controls={this.menuId}
-                aria-haspopup="true"
-                color="inherit"
-                onClick={this.profileMenuOpen}
-                >
-                <AccountCircle />
-              </IconButton>
-            </div>
-            {this.renderMenu}
+          </Grid>
+          <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+            <IconButton
+              edge='end'
+              aria-label='profile'
+              aria-controls={this.profileMenuId}
+              aria-haspopup='true'
+              color='inherit'
+              onClick={this.handleProfileMenuOpen}
+            >
+              <AccountCircle />
+            </IconButton>
+          </div>
+
+          <StyledMenu
+            anchorEl={anchorElProfile}
+            id={this.profileMenuId}
+            keepMounted
+            open={Boolean(anchorElProfile)}
+            onClose={this.handleProfileMenuClose}
+          >
+            <StyledMenuItem onClick={this.handleProfileMenuClose}>
+              <ListItemIcon>
+                <AccountCircle fontSize='default' />
+              </ListItemIcon>
+              <ListItemText primary={t('account.profile')} />
+            </StyledMenuItem>
+
+            <StyledMenuItem onClick={this.handleProfileMenuClose}>
+              <ListItemIcon>
+                <ExitToApp fontSize='default' />
+              </ListItemIcon>
+              <ListItemText primary={t('account.logout')} />
+            </StyledMenuItem>
+          </StyledMenu>
+
+          <StyledMenu
+            id={this.dropdownMenuId}
+            open={Boolean(anchorElDropdown)}
+            anchorEl={anchorElDropdown}
+            onClose={this.handleDropdownMenuClose}
+          >
+            <StyledMenuItem
+              onClick={this.handleDropdownMenuClose}
+              component={Link} to={{ pathname: '/samplehooks', search: this.props.location.search }}
+            >
+              <ListItemIcon>
+                <ArrowDropDownIcon fontSize='default' />
+              </ListItemIcon>
+              <ListItemText primary='React Hooks' />
+            </StyledMenuItem>
+            <StyledMenuItem
+              onClick={this.handleDropdownMenuClose}
+              component={Link}
+              to={{ pathname: '/samplehooks2', search: this.props.location.search }}
+            >
+              <ListItemIcon>
+                <ArrowDropDownIcon fontSize='default' />
+              </ListItemIcon>
+              <ListItemText primary='React Hooks 2' />
+            </StyledMenuItem>
+            <StyledMenuItem
+              onClick={this.handleDropdownMenuClose}
+              component={Link}
+              to={{ pathname: '/sampleapp', search: this.props.location.search }}
+            >
+              <ListItemIcon>
+                <ArrowDropDownIcon fontSize='default' />
+              </ListItemIcon>
+              <ListItemText primary='Sample App' />
+            </StyledMenuItem>
+          </StyledMenu>
+
         </Toolbar>
       </AppBar>
     )
   }
 }
 
-export default withRouter(withStyles(styles)(Topbar))
+export default withRouter(withStyles(styles)(withTranslation()(Topbar)))

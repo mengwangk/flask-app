@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import withStyles from '@material-ui/styles/withStyles';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Avatar from '@material-ui/core/Avatar';
-import DescriptionIcon from '@material-ui/icons/Description';
-import ButtonBar from '../buttons/ButtonBar';
+import React, { Component } from 'react'
+import withStyles from '@material-ui/styles/withStyles'
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
+import Avatar from '@material-ui/core/Avatar'
+import DescriptionIcon from '@material-ui/icons/Description'
+import ButtonBar from '../buttons/ButtonBar'
 
 const styles = theme => ({
   paper: {
@@ -15,7 +15,7 @@ const styles = theme => ({
   avatar: {
     margin: 10,
     backgroundColor: theme.palette.grey['200'],
-    color: theme.palette.text.primary,
+    color: theme.palette.text.primary
   },
   avatarContainer: {
     [theme.breakpoints.down('sm')]: {
@@ -71,9 +71,8 @@ const styles = theme => ({
 })
 
 class CardItem extends Component {
-
-  render() {
-    const { classes } = this.props;
+  render () {
+    const { classes } = this.props
 
     return (
       <div className={classes.root}>
@@ -89,7 +88,7 @@ class CardItem extends Component {
                 <Typography style={{ textTransform: 'uppercase' }} color='secondary' gutterBottom>
                   Months
                 </Typography>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   4 month(s)
                 </Typography>
               </div>
@@ -97,7 +96,7 @@ class CardItem extends Component {
                 <Typography style={{ textTransform: 'uppercase' }} color='secondary' gutterBottom>
                   Creation date
                 </Typography>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   01 February 2019
                 </Typography>
               </div>
@@ -105,7 +104,7 @@ class CardItem extends Component {
                 <Typography style={{ textTransform: 'uppercase' }} color='secondary' gutterBottom>
                   Amount
                 </Typography>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   6,600 USD
                 </Typography>
               </div>
@@ -114,7 +113,7 @@ class CardItem extends Component {
               <Typography style={{ textTransform: 'uppercase' }} color='secondary' gutterBottom>
                 Other Amount
               </Typography>
-              <Typography variant="h4" gutterBottom>
+              <Typography variant='h4' gutterBottom>
                 Once a month
               </Typography>
               <ButtonBar />
@@ -126,4 +125,4 @@ class CardItem extends Component {
   }
 }
 
-export default withStyles(styles)(CardItem);
+export default withStyles(styles)(CardItem)

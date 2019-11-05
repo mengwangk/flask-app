@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import withStyles from '@material-ui/styles/withStyles';
-import Button from '@material-ui/core/Button';
+import React, { Component } from 'react'
+import withStyles from '@material-ui/styles/withStyles'
+import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
   primary: {
@@ -16,9 +16,8 @@ const styles = theme => ({
 })
 
 class ButtonBar extends Component {
-
-  render() {
-    const { classes } = this.props;
+  render () {
+    const { classes } = this.props
 
     return (
       <div className={classes.spaceTop}>
@@ -28,8 +27,8 @@ class ButtonBar extends Component {
           Delete
         </Button>
         <Button
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
           className={classes.secondary}
         >
           Edit
@@ -39,4 +38,4 @@ class ButtonBar extends Component {
   }
 }
 
-export default withStyles(styles)(ButtonBar);
+export default withStyles(styles)(ButtonBar)

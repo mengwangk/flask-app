@@ -1,17 +1,17 @@
-import React,  { Component } from 'react';
-import withStyles from '@material-ui/styles/withStyles';
-import { withRouter } from 'react-router-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import InstructionDialog from './dialogs/InstructionDialog';
-import SwipeDialog from './dialogs/SwipeDialog';
+import React, { Component } from 'react'
+import withStyles from '@material-ui/styles/withStyles'
+import { withRouter } from 'react-router-dom'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+import InstructionDialog from '../components/dialogs/InstructionDialog'
+import SwipeDialog from '../components/dialogs/SwipeDialog'
 
-import Topbar from './Topbar';
+import Topbar from '../components/Topbar'
 
-const backgroundShape = require('../images/shape.svg');
+const backgroundShape = require('../images/shape.svg')
 
 const styles = theme => ({
   root: {
@@ -33,7 +33,7 @@ const styles = theme => ({
   paper: {
     padding: theme.spacing(3),
     textAlign: 'left',
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.secondary
   },
   rangeLabel: {
     display: 'flex',
@@ -46,11 +46,11 @@ const styles = theme => ({
     alignItems: 'center',
     marginTop: 32
   },
-  outlinedButtom: {
+  outlinedButton: {
     textTransform: 'uppercase',
     margin: theme.spacing(1)
   },
-  actionButtom: {
+  actionButton: {
     textTransform: 'uppercase',
     margin: theme.spacing(1),
     width: 152
@@ -60,7 +60,7 @@ const styles = theme => ({
     textAlign: 'center'
   },
   block: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(2)
   },
   box: {
     marginBottom: 40,
@@ -88,54 +88,53 @@ const styles = theme => ({
     top: '40%',
     left: '40%'
   }
-});
+})
 
 class Main extends Component {
-
   state = {
     learnMoredialog: false,
     getStartedDialog: false
   };
 
-  componentDidMount() {}
+  componentDidMount () {}
 
-  openDialog = (event) => {
-    this.setState({learnMoredialog: true});
+  handleOpenDialog = (event) => {
+    this.setState({ learnMoredialog: true })
   }
 
-  dialogClose = (event) => {
-    this.setState({learnMoredialog: false});
+  handleDialogClose = (event) => {
+    this.setState({ learnMoredialog: false })
   }
 
-  openGetStartedDialog = (event) => {
-    this.setState({getStartedDialog: true});
+  handleOpenGetStartedDialog = (event) => {
+    this.setState({ getStartedDialog: true })
   }
 
-  closeGetStartedDialog = (event) => {
-    this.setState({getStartedDialog: false});
+  handleCloseGetStartedDialog = (event) => {
+    this.setState({ getStartedDialog: false })
   }
 
-  render() {
-    const { classes } = this.props;
+  render () {
+    const { classes } = this.props
     return (
-      <React.Fragment>
+      <>
         <CssBaseline />
         <Topbar />
         <div className={classes.root}>
-          <Grid container justify="center">
-            <Grid spacing={4} alignItems="center" justify="center" container className={classes.grid}>
+          <Grid container justify='center'>
+            <Grid spacing={4} alignItems='center' justify='center' container className={classes.grid}>
               <Grid item xs={12} md={4}>
                 <Paper className={classes.paper}>
                   <div className={classes.box}>
-                    <Typography style={{textTransform: 'uppercase'}} color='secondary' gutterBottom>
+                    <Typography style={{ textTransform: 'uppercase' }} color='secondary' gutterBottom>
                       First title
                     </Typography>
-                    <Typography variant="body2" gutterBottom>
-                      A first title style <br/> with two lines
+                    <Typography variant='body2' gutterBottom>
+                      A first title style <br /> with two lines
                     </Typography>
                   </div>
-                  <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    <Button color='primary' variant="contained" className={classes.actionButtom}>
+                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Button color='primary' variant='contained' className={classes.actionButton}>
                       Learn more
                     </Button>
                   </div>
@@ -144,15 +143,15 @@ class Main extends Component {
               <Grid item xs={12} md={4}>
                 <Paper className={classes.paper}>
                   <div className={classes.box}>
-                    <Typography style={{textTransform: 'uppercase'}} color='secondary' gutterBottom>
+                    <Typography style={{ textTransform: 'uppercase' }} color='secondary' gutterBottom>
                       Another box
                     </Typography>
-                    <Typography variant="body1" gutterBottom>
+                    <Typography variant='body1' gutterBottom>
                       A default box
                     </Typography>
                   </div>
-                  <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    <Button color='primary' variant="contained" className={classes.actionButtom}>
+                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Button color='primary' variant='contained' className={classes.actionButton}>
                       Learn more
                     </Button>
                   </div>
@@ -161,57 +160,58 @@ class Main extends Component {
               <Grid item xs={12} md={4}>
                 <Paper className={classes.paper}>
                   <div className={classes.box}>
-                    <Typography style={{textTransform: 'uppercase'}} color='secondary' gutterBottom>
+                    <Typography style={{ textTransform: 'uppercase' }} color='secondary' gutterBottom>
                       A box with a carousel
                     </Typography>
-                    <Typography variant="body1" gutterBottom>
+                    <Typography variant='body1' gutterBottom>
                       If you click in Getting Started, you will see a nice carousel
                     </Typography>
                   </div>
                   <div className={classes.alignRight}>
-                    <Button onClick={this.openDialog}  variant="outlined" className={classes.actionButtom}>
+                    <Button onClick={this.handleOpenDialog} variant='outlined' className={classes.actionButton}>
                       Learn more
                     </Button>
-                    <Button onClick={this.openGetStartedDialog} color='primary' variant="contained" className={classes.actionButtom}>
+                    <Button onClick={this.handleOpenGetStartedDialog} color='primary' variant='contained' className={classes.actionButton}>
                       Dashboard
                     </Button>
                   </div>
                 </Paper>
               </Grid>
               <Grid container item xs={12}>
-                  <Grid item xs={12}>
-                    <Paper className={classes.paper}>
-                      <div>
-                        <div className={classes.box}>
-                          <Typography color='secondary' gutterBottom>
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    <div>
+                      <div className={classes.box}>
+                        <Typography color='secondary' gutterBottom>
                             Full box
-                          </Typography>
-                          <Typography variant="body1" gutterBottom>
+                        </Typography>
+                        <Typography variant='body1' gutterBottom>
                             This is an example of a full-width box
-                          </Typography>
-                        </div>
-                        <div className={classes.alignRight}>
-                          <Button color='primary' variant="contained" className={classes.actionButtom}>
-                            Learn more
-                          </Button>
-                        </div>
+                        </Typography>
                       </div>
-                    </Paper>
+                      <div className={classes.alignRight}>
+                        <Button color='primary' variant='contained' className={classes.actionButton}>
+                            Learn more
+                        </Button>
+                      </div>
+                    </div>
+                  </Paper>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
           <SwipeDialog
             open={this.state.learnMoredialog}
-            onClose={this.dialogClose} />
+            onClose={this.handleDialogClose}
+          />
           <InstructionDialog
             open={this.state.getStartedDialog}
-            onClose={this.closeGetStartedDialog}
+            onClose={this.handleCloseGetStartedDialog}
           />
         </div>
-      </React.Fragment>
+      </>
     )
   }
 }
 
-export default withRouter(withStyles(styles)(Main));
+export default withRouter(withStyles(styles)(Main))
