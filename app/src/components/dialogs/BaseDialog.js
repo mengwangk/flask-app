@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import withStyles from '@material-ui/styles/withStyles';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import React, { Component } from 'react'
+import withStyles from '@material-ui/styles/withStyles'
+import Dialog from '@material-ui/core/Dialog'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
 
 const styles = theme => ({
   container: {
@@ -21,23 +21,23 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
-  },
-});
+  }
+})
 
 class BaseDialog extends Component {
-  render() {
-    const { classes, open, onClose } = this.props;
+  render () {
+    const { classes, open, onClose } = this.props
     return (
       <Dialog
         open={open}
         onClose={onClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
         scroll='body'
       >
-        <DialogTitle id="alert-dialog-title"></DialogTitle>
+        <DialogTitle id='alert-dialog-title' />
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText id='alert-dialog-description'>
             <div className={classes.container}>
               {this.props.children}
             </div>
@@ -48,4 +48,4 @@ class BaseDialog extends Component {
   }
 }
 
-export default withStyles(styles)(BaseDialog);
+export default withStyles(styles)(BaseDialog)

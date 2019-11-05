@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { ThemeProvider } from '@material-ui/styles';
+import React, { Component, Suspense } from 'react'
+import { ThemeProvider } from '@material-ui/styles'
 import { createMuiTheme } from '@material-ui/core/styles'
-import './App.css';
-import Routes from './routes'
 import { blue, indigo } from '@material-ui/core/colors'
+import './App.css'
+import Routes from './routes'
+import { Images } from './themes'
 
 const theme = createMuiTheme({
   palette: {
@@ -21,19 +22,28 @@ const theme = createMuiTheme({
       'sans-serif'
     ].join(',')
   }
-});
+})
 
+// loading component for suspense fallback
+const Loader = () => (
+  <div className='App'>
+    <img src={Images.logo} className='App-logo' alt='logo' />
+    <div>Loading...</div>
+  </div>
+)
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <div>
         <ThemeProvider theme={theme}>
-          <Routes />
+          <Suspense fallback={<Loader />}>
+            <Routes />
+          </Suspense>
         </ThemeProvider>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
