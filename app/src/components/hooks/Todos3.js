@@ -1,139 +1,151 @@
-import React, { useState, useReducer, useContext } from 'react'
-import uuid from 'uuid/v4'
-import useCombinedReducers, { StateContext, DispatchContext } from './utils'
+import React, { useContext, useReducer, useState } from "react";
+import uuid from "uuid/v4";
+import useCombinedReducers, { DispatchContext, StateContext } from "./utils";
 
 // const DispatchContext = createContext(null)
 
 const initialTodos = [
   {
     id: uuid(),
-    task: 'React',
-    complete: true
-  }, {
+    task: "React",
+    complete: true,
+  },
+  {
     id: uuid(),
-    task: 'Angular',
-    complete: true
-  }, {
+    task: "Angular",
+    complete: true,
+  },
+  {
     id: uuid(),
-    task: 'Vue.js',
-    complete: false
-  }
-]
+    task: "Vue.js",
+    complete: false,
+  },
+];
 
 const filterReducer = (state, action) => {
   switch (action.type) {
-    case 'SHOW_ALL':
-      return 'ALL'
-    case 'SHOW_COMPLETE':
-      return 'COMPLETE'
-    case 'SHOW_INCOMPLETE':
-      return 'INCOMPLETE'
+    case "SHOW_ALL":
+      return "ALL";
+    case "SHOW_COMPLETE":
+      return "COMPLETE";
+    case "SHOW_INCOMPLETE":
+      return "INCOMPLETE";
     default:
-      return state
+      return state;
   }
-}
+};
 
 const todoReducer = (state, action) => {
   switch (action.type) {
-    case 'DO_TODO':
-      return state.map(todo => {
+    case "DO_TODO":
+      return state.map((todo) => {
         if (todo.id === action.id) {
           return {
             ...todo,
-            complete: true
-          }
+            complete: true,
+          };
         } else {
-          return todo
+          return todo;
         }
-      })
-    case 'UNDO_TODO':
-      return state.map(todo => {
+      });
+    case "UNDO_TODO":
+      return state.map((todo) => {
         if (todo.id === action.id) {
           return {
             ...todo,
-            complete: false
-          }
+            complete: false,
+          };
         } else {
-          return todo
+          return todo;
         }
-      })
-    case 'ADD_TODO':
-      return state.concat({ task: action.task, id: action.id, complete: false })
+      });
+    case "ADD_TODO":
+      return state.concat({
+        task: action.task,
+        id: action.id,
+        complete: false,
+      });
     default:
-      return state
+      return state;
   }
-}
+};
 
 const Filter = () => {
-  const dispatch = useContext(DispatchContext)
+  const dispatch = useContext(DispatchContext);
 
   const handleShowAll = () => {
-    dispatch({ type: 'SHOW_ALL' })
-  }
+    dispatch({ type: "SHOW_ALL" });
+  };
   const handleShowComplete = () => {
-    dispatch({ type: 'SHOW_COMPLETE' })
-  }
+    dispatch({ type: "SHOW_COMPLETE" });
+  };
   const handleShowIncomplete = () => {
-    dispatch({ type: 'SHOW_INCOMPLETE' })
-  }
+    dispatch({ type: "SHOW_INCOMPLETE" });
+  };
   return (
     <div>
-      <button type='button' onClick={handleShowAll}>
-                Show All
+      <button type="button" onClick={handleShowAll}>
+        Show All
       </button>
-      <button type='button' onClick={handleShowComplete}>
-                Show Complete
+      <button type="button" onClick={handleShowComplete}>
+        Show Complete
       </button>
-      <button type='button' onClick={handleShowIncomplete}>
-                Show Incomplete
+      <button type="button" onClick={handleShowIncomplete}>
+        Show Incomplete
       </button>
     </div>
-  )
-}
+  );
+};
 
 const TodoList = ({ todos }) => (
   <ul>
-    {todos.map(todo => (<TodoItem key={todo.id} todo={todo} />))}
+    {todos.map((todo) => (
+      <TodoItem key={todo.id} todo={todo} />
+    ))}
   </ul>
-)
+);
 
 const TodoItem = ({ todo }) => {
-  const dispatch = useContext(DispatchContext)
-  const handleChange = () => dispatch({
-    type: todo.complete
-      ? 'UNDO_TODO'
-      : 'DO_TODO',
-    id: todo.id
-  })
+  const dispatch = useContext(DispatchContext);
+  const handleChange = () =>
+    dispatch({
+      type: todo.complete ? "UNDO_TODO" : "DO_TODO",
+      id: todo.id,
+    });
   return (
     <li>
       <label>
-        <input type='checkbox' checked={todo.complete} onChange={handleChange} /> {todo.task}
+        <input
+          type="checkbox"
+          checked={todo.complete}
+          onChange={handleChange}
+        />{" "}
+        {todo.task}
       </label>
     </li>
-  )
-}
+  );
+};
 
 const AddTodo = () => {
-  const dispatch = useContext(DispatchContext)
-  const [task, setTask] = useState('')
+  const dispatch = useContext(DispatchContext);
+  const [task, setTask] = useState("");
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     if (task) {
-      dispatch({ type: 'ADD_TODO', task, id: uuid() })
+      dispatch({ type: "ADD_TODO", task, id: uuid() });
     }
-    setTask('')
-    event.preventDefault()
-  }
+    setTask("");
+    event.preventDefault();
+  };
 
-  const handleChange = event => setTask(event.target.value)
+  const handleChange = (event) => setTask(event.target.value);
   return (
     <form onSubmit={handleSubmit}>
-      <input type='text' value={task} onChange={handleChange} />
-      <button type='submit'>Add Todo</button>
+      <input type="text" value={task} onChange={handleChange} />
+      <button type="submit">Add Todo</button>
     </form>
-  )
-}
+  );
+};
 
 const Todos3 = () => {
   /*
@@ -150,30 +162,30 @@ const Todos3 = () => {
   }
   */
   const [state, dispatch] = useCombinedReducers({
-    filter: useReducer(filterReducer, 'ALL'),
-    todos: useReducer(todoReducer, initialTodos)
-  })
+    filter: useReducer(filterReducer, "ALL"),
+    todos: useReducer(todoReducer, initialTodos),
+  });
 
-  const { filter, todos } = state
-  console.log(state)
-  console.log(filter)
-  console.log(todos)
+  const { filter, todos } = state;
+  console.log(state);
+  console.log(filter);
+  console.log(todos);
 
-  const filteredTodos = state.todos.filter(todo => {
-    if (state.filter === 'ALL') {
-      return true
+  const filteredTodos = state.todos.filter((todo) => {
+    if (state.filter === "ALL") {
+      return true;
     }
 
-    if (state.filter === 'COMPLETE' && todo.complete) {
-      return true
+    if (state.filter === "COMPLETE" && todo.complete) {
+      return true;
     }
 
-    if (state.filter === 'INCOMPLETE' && !todo.complete) {
-      return true
+    if (state.filter === "INCOMPLETE" && !todo.complete) {
+      return true;
     }
 
-    return false
-  })
+    return false;
+  });
 
   return (
     <DispatchContext.Provider value={dispatch}>
@@ -183,7 +195,7 @@ const Todos3 = () => {
         <AddTodo />
       </StateContext.Provider>
     </DispatchContext.Provider>
-  )
-}
+  );
+};
 
-export default Todos3
+export default Todos3;
