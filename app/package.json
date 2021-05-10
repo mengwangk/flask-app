@@ -16,7 +16,7 @@
     "i18next": "^17.3.0",
     "i18next-browser-languagedetector": "^4.0.0",
     "i18next-xhr-backend": "^3.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "material-table": "^1.53.0",
     "numeral": "^2.0.6",
     "query-string": "^6.8.3",
